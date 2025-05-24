@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8"/>
+	<title>오시는 길 | 구조변경 박대장</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+    <div class="logo">구조변경 박대장</div>
+    <nav>
+        <button onclick="location.href='index.html'">홈</button>
+        <button onclick="location.href='about.html'">소개</button>
+        <button onclick="location.href='process.html'">작업 과정</button>
+        <button onclick="location.href='gallery.html'">작업 사진</button>
+		<button onclick="location.href='map.html'">이용 안내</button>
+        <button onclick="location.href='contact.html'">견적 문의</button>
+    </nav>
+</header>
+<div class="tabs">
+    <div class="tab" data-tab="tab1">구조변경 박대장</div>
+    <div class="tab active" data-tab="tab2">오시는 길</div>
+  </div>
+<section class="section">
+	<div class="tab-content" id="tab1">
+		<h1>박대장 이용 안내</h1>
+		<p>여기는 구조변경 박대장을 소개하는 페이지입니다.</p>
+	</div>
+	<!-- 구조변경 박대장 TAP -->
+	<div class="tab-content" id="tab1">
+		<h2>구조변경 박대장</h2>
+		<p>구조변경 박대장은 전문적인 구조변경 서비스를 제공하는 업체입니다.</p>
+		<p>고객의 요구에 맞춰 최상의 서비스를 제공하기 위해 노력하고 있습니다.</p>
+		<p>자세한 정보는 아래 버튼을 클릭하여 확인하세요.</p>
+		<button onclick="location.href='contact.html'">견적 문의</button>
+	</div>
+
+	<!-- 오시는 길 TAP -->
+	<div class="tab-content active" id="tab2">
+		<h1>오시는 길</h1>
+		<!-- 지도 -->
+	<div id="map" style="width:70%;height:400px;"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fff3cbc496882d72709f46f82dbac1a8"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+	</script>
+		<!-- 지도 끝 -->
+	<p>주소: 경기도 평택시 고덕면 두릉리 245</p>
+	<p>다원엔지니어링</p>
+	<p>전화: 010-4789-8187</p>
+	</div>
+</section>
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
