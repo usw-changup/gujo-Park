@@ -138,3 +138,33 @@ function activateTab(tabId) {
     activeContent.classList.add('active');
   }
 }
+
+
+// 견적문의_ 모달 창
+
+  // 요소 선택
+  const modal = document.getElementById("privacyModal");
+  const openBtn = document.getElementById("privacyLink");
+  const closeBtn = document.getElementById("closeBtn");
+  const closeSpan = document.querySelector(".close");
+
+  // 열기
+  openBtn.onclick = function(e) {
+    e.preventDefault(); // 기본 동작 방지
+    modal.style.display = "block";
+  }
+
+  // 닫기
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  }
+  closeSpan.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // 바깥 영역 클릭하면 닫기
+  window.onclick = function(event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  }
