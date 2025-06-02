@@ -168,3 +168,17 @@ function activateTab(tabId) {
       modal.style.display = "none";
     }
   }
+
+  document.getElementById('fileInput').addEventListener('change', function(e) {
+    const files = e.target.files;
+    Array.from(files).forEach(file => {
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                // 이미지 미리보기 표시
+                console.log(e.target.result); // base64 데이터
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+});
