@@ -169,6 +169,7 @@ function activateTab(tabId) {
     }
   }
 
+  window.addEventListener("DOMContentLoaded", () => {
   document.getElementById('fileInput').addEventListener('change', function(e) {
     const files = e.target.files;
     Array.from(files).forEach(file => {
@@ -182,3 +183,95 @@ function activateTab(tabId) {
         }
     });
 });
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelector("form").addEventListener("submit", async function (e) {
+    e.preventDefault(); // 폼 기본 동작 막기
+
+    const name = document.getElementById("name").value.trim();
+    const number = document.getElementById("contact").value.trim();
+    const content = document.getElementById("message").value.trim();
+    const agreed = document.getElementById("privacy").checked;
+
+    if (!name || !number || !content) {
+      alert("모든 항목을 입력해주세요.");
+      return;
+    }
+
+    if (!agreed) {
+      alert("개인정보 수집에 동의하셔야 등록이 가능합니다.");
+      return;
+    }
+
+    try {
+      const response = await fetch("https://d187-59-12-124-22.ngrok-free.app/apply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, number, content })
+      });
+
+      if (response.ok) {
+        alert("문의가 등록되었습니다!");
+        document.querySelector("form").reset(); // 입력값 초기화
+      } else {
+        const text = await response.text();
+        alert("등록 실패: " + text);
+      }
+    } catch (err) {
+      alert("서버 연결 실패");
+      console.error(err);
+    }
+  });
+});
+
+// 로그인 함수
+async function login() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  const response = await fetch("https://d187-59-12-124-22.ngrok-free.app/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ username, password }),
+    credentials: "include" // ✅ JSESSIONID 쿠키 받기 위해 꼭 필요!
+  });
+
+  const text = await response.text();
+  console.log("로그인 응답:", text);
+
+  if (response.ok) {
+    alert("로그인 성공!");
+
+    // ✅ 로그인 성공 시 견적 목록 페이지로 이동
+    window.location.href = "/admin/applications.html";
+    
+  } else {
+    alert("로그인 실패: " + text);
+  }
+}
+
+
+// 파일 업로드 버튼 클릭 시 실행될 함수
+async function uploadPhoto() {
+  const fileInput = document.querySelector('#fileInput'); // input type="file" 요소
+  const file = fileInput.files[0]; // 사용자가 선택한 파일
+
+  const formData = new FormData();
+  formData.append('file', file); // key는 서버에서 받는 이름: file
+
+  const response = await fetch('http://d187-59-12-124-22.ngrok-free.app/admin/uploadPhoto', {
+    method: 'POST',
+    body: formData,
+    credentials: 'include' // 세션 쿠키(JSESSIONID) 같이 보내기!
+  });
+
+  const result = await response.text(); // 서버 응답
+  console.log(result); // 결과 출력
+}
+
+

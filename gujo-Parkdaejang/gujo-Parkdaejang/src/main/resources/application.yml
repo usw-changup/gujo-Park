@@ -1,11 +1,17 @@
 server:
   port: 8080
   servlet:
+    session:
+      cookie:
+        same-site: none
+        secure: true
     context-path: /
     encoding:
       charset: UTF-8
       enabled: true
       force: true
+  tomcat:
+    max-swallow-size: -1
 spring:
   application:
   name: gujo-Parkdaejang
@@ -16,7 +22,7 @@ spring:
     password: yooree0626
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update   # create 로 하면 애플리케이션 시작할 때마다 테이블 다시 만들고 초기화해버림
     show-sql: true
     properties:
       hibernate:
@@ -28,6 +34,7 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+
 logging:
   pattern:
     console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"

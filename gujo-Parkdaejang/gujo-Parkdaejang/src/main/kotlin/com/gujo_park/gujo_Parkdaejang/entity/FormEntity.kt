@@ -1,9 +1,11 @@
 package com.gujo_park.gujo_Parkdaejang.entity
 
 import jakarta.persistence.*
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
 
-
+@EntityListeners(AuditingEntityListener::class)
 @Entity
 @Table(name = "forms")
 class FormEntity(
@@ -17,6 +19,8 @@ class FormEntity(
     @Column(length = 1000)
     var content: String? = null, // 문의내용
 
+    @CreatedDate
+    @Column(updatable = false)
     var createdAt: LocalDateTime? = null
 ) {
     @PrePersist
