@@ -3,6 +3,7 @@ package com.gujo_park.gujo_Parkdaejang.controller
 import com.gujo_park.gujo_Parkdaejang.dto.FormDto
 import com.gujo_park.gujo_Parkdaejang.entity.FormEntity
 import com.gujo_park.gujo_Parkdaejang.repository.FormRepository
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.context.SecurityContextHolder
@@ -14,16 +15,16 @@ class FormController(
 ) {
 
     // 1) 신청 저장 (로그인 없이 가능)
-    @CrossOrigin(origins = ["http://127.0.0.1:5500"], allowCredentials = "true")
+//    @CrossOrigin(origins = ["http://127.0.0.1:5500"], allowCredentials = "true")
     @PostMapping("/apply")
     fun saveForm(@RequestBody formDto: FormDto): ResponseEntity<String> {
         val entity: FormEntity = formDto.toEntity()
         formRepository.save(entity)
         return ResponseEntity.ok("신청이 저장되었습니다.")
     }
-
+// https://ca88-223-195-115-29.ngrok-free.app
     // 2) 관리자만 목록 조회
-    @CrossOrigin(origins = ["http://127.0.0.1:5500"], allowCredentials = "true")
+//    @CrossOrigin(origins = ["http://127.0.0.1:5500"], allowCredentials = "true")
     @GetMapping("/admin/applications")
     @PreAuthorize("hasRole('ADMIN')")
     fun getAllApplications(): ResponseEntity<List<FormDto>> {
@@ -35,5 +36,16 @@ class FormController(
         val all = formRepository.findAll()
         val dtoList = all.map { FormDto.fromEntity(it) }
         return ResponseEntity.ok(dtoList)
+    }
+
+    @DeleteMapping("/admin/applications/{id}")
+    fun deleteApplication(@PathVariable id: Long): ResponseEntity<String> {
+        val exists = formRepository.existsById(id)
+        if (!exists) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 문의가 존재하지 않습니다.")
+        }
+
+        formRepository.deleteById(id)
+        return ResponseEntity.ok("삭제 완료")
     }
 }

@@ -13,7 +13,7 @@ class PhotoController(
     private val photoRepository: PhotoRepository
 ) {
 
-    @CrossOrigin(origins = ["http://127.0.0.1:5500"], allowCredentials = "true")
+//    @CrossOrigin(origins = ["http://127.0.0.1:5500"], allowCredentials = "true")
     @PostMapping("/uploadPhoto")
     fun uploadPhoto(@RequestParam("file") file: MultipartFile): ResponseEntity<String> {
         if (file.isEmpty) {

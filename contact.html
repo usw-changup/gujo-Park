@@ -140,55 +140,55 @@
         <button data-href="map.html">이용 안내</button>
         <button data-href="contact.html">견적 문의</button>
     </nav>
-        <!-- <div class="login">
-            <a href="login.html">로그인</a>
-        </div> -->
+        <div class="login">
+            <a href="login.html" style="color:rgb(140, 140, 140)">관리자 로그인</a>
+        </div>
 </header>
 
 <section class="section">
     <h1>견적 문의</h1>
     <p style="font-size: 14px;">*견적 제안은 고객님의 구조변경 차량에 대한 요청 사항 확인 후 유선상으로 진행됩니다.</p>
     <div class="container">
-    <form>
-      <div class="form-row">
-        <label class="form-label" for="name">이름</label>
-        <div class="form-input"><input type="text" id="name" name="name"></div>
-      </div>
-      <div class="form-row">
-        <label class="form-label" for="contact">연락처</label>
-        <div class="form-input"><input type="text" id="contact" name="contact"></div>
-      </div>
-      <div class="form-row">
-        <label class="form-label" for="message">문의사항</label>
-        <div class="form-input"><textarea id="message" name="message"></textarea></div>
-      </div>
-      <div id="form-button">
-        <input type="checkbox" id="privacy" name="privacy">
-        <label for="privacy">개인정보 수집 및 이용에 동의합니다. <a href="#" id="privacyLink">내용보기</a></label>
-        <!-- 모달 창 -->
-        <div id="privacyModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3 style="font-weight:400;">개인정보 수집 및 이용에 동의</h3>
-            <p><br></p>
-            <p>< 개인정보 수집 및 이용에 대한 안내 ><br>
-            1. 수집/이용 목적: 주로, 예약, 문의 등 고객 요청 처리 및 결과 회신<br>
-            2. 수집하는 항목: 이름, 연락처<br>
-            3. 보유/이용 기간: 고객 요청 처리 후 3개월<br>
-            4. 동의를 거부할 수 있으며, 거부 시 이용이 제한될 수 있습니다.
-            </p>
-            <button id="closeBtn">닫기</button>
-        </div>
-        </div>
-        <div class="buttons">
-            <button type="button" class="cancel">취소</button>
-            <button type="submit" class="submit">등록</button>
-        </div>
-      <div class="checkbox-row">
-      </div>
-      
-      </div>
-    </form>
+    <form id="inquiryForm">
+  <div class="form-row">
+    <label class="form-label" for="name">이름</label>
+    <div class="form-input"><input type="text" id="name" name="name"></div>
+  </div>
+  <div class="form-row">
+    <label class="form-label" for="contact">연락처</label>
+    <div class="form-input"><input type="text" id="contact" name="contact"></div>
+  </div>
+  <div class="form-row">
+    <label class="form-label" for="message">문의사항</label>
+    <div class="form-input"><textarea id="message" name="message"></textarea></div>
+  </div>
+
+  <div class="checkbox-row">
+    <input type="checkbox" id="privacy" name="privacy">
+    <label for="privacy">개인정보 수집 및 이용에 동의합니다. <a href="#" id="privacyLink">내용보기</a></label>
+  </div>
+
+  <!-- 모달 -->
+  <div id="privacyModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>개인정보 수집 및 이용에 동의</h3>
+      <p>< 개인정보 수집 및 이용에 대한 안내 ><br>
+        1. 수집/이용 목적: 예약, 문의 등 고객 요청 처리 및 결과 회신<br>
+        2. 수집 항목: 이름, 연락처<br>
+        3. 보유 기간: 고객 요청 처리 후 3개월<br>
+        4. 동의는 선택 사항이나 거부 시 이용이 제한될 수 있습니다.
+      </p>
+      <button id="closeBtn" type="button">닫기</button>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button type="button" class="cancel">취소</button>
+    <button type="submit" class="submit">등록</button>
+  </div>
+</form>
+
   </div>
 
 </section>

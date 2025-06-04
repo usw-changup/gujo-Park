@@ -21,7 +21,7 @@ class AuthController(
     private val passwordEncoder: PasswordEncoder
 ) {
 
-    @CrossOrigin(origins = ["http://127.0.0.1:5500"], allowCredentials = "true")
+//    @CrossOrigin(origins = ["http://127.0.0.1:8080"], allowCredentials = "true")
     @PostMapping("/auth/login")
     fun login(@RequestBody loginRequest: LoginRequestDto,
               request: HttpServletRequest

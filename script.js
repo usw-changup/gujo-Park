@@ -205,11 +205,12 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const response = await fetch("https://d187-59-12-124-22.ngrok-free.app/apply", {
+      const response = await fetch("https://0bac-223-195-115-29.ngrok-free.app/apply", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
+        credentials: "include",
         body: JSON.stringify({ name, number, content })
       });
 
@@ -232,7 +233,7 @@ async function login() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
-  const response = await fetch("https://d187-59-12-124-22.ngrok-free.app/auth/login", {
+  const response = await fetch("https://0bac-223-195-115-29.ngrok-free.app/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -264,7 +265,7 @@ async function uploadPhoto() {
   const formData = new FormData();
   formData.append('file', file); // key는 서버에서 받는 이름: file
 
-  const response = await fetch('http://d187-59-12-124-22.ngrok-free.app/admin/uploadPhoto', {
+  const response = await fetch('https://0bac-223-195-115-29.ngrok-free.app/admin/uploadPhoto', {
     method: 'POST',
     body: formData,
     credentials: 'include' // 세션 쿠키(JSESSIONID) 같이 보내기!
